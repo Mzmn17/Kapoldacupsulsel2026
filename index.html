@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapolda Cup Sulsel — Road to Kapolri Cup 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg-deep:#050914;
+    --bg-panel:#0b1224;
+    --bg-panel-light:#0f1b34;
+    --line:#1c2c4d;
+    --line-bright:#2f4d85;
+    --blue-glow:#3aa0ff;
+    --blue-mid:#1e5fb8;
+    --blue-deep:#0a2a5c;
+    --gold:#ffffff;
+    --gold-bright:#ffffff;
+    --text-hi:#f2f6ff;
+    --text-mid:#9fb3d9;
+    --text-dim:#5f7299;
+    --red-accent:#c23a3a;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:
+      linear-gradient(100deg, rgba(60, 7, 7, 0.401), rgba(0, 0, 0, 0.423)),
+      url('LB1.png') center/cover no-repeat;
+    color:var(--text-hi);
+    font-family:'Rajdhani',sans-serif;
+    min-height:100vh;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .app{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    min-height:100vh;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    background:linear-gradient(180deg,#081128,#050a18);
+    border-right:1px solid var(--line);
+    padding:28px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:36px;
+  }
+
+  .brand{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:6px;
+    padding-bottom:8px;
+  }
+  .brand-badge{
+    width:130px;height:130px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 35%, #2a4a8a, #0a1630 70%);
+    border:2px solid var(--gold);
+    box-shadow:0 0 0 4px rgba(232,182,76,0.08), 0 0 30px rgba(58,160,255,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .brand-badge::before{
+    content:"";
+    position:absolute;inset:8px;
+    border-radius:50%;
+    border:1px solid rgba(232,182,76,0.5);
+  }
+  .brand-badge svg{width:64px;height:64px;}
+  .brand-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--gold-bright);
+    margin-top:8px;
+    line-height:1.6;
+  }
+  .brand-sub{
+    font-size:11px;
+    letter-spacing:3px;
+    color:var(--text-dim);
+  }
+
+  .nav{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .nav-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 16px;
+    border-radius:10px;
+    border:1px solid transparent;
+    color:var(--text-mid);
+    font-weight:600;
+    font-size:14.5px;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .nav-item svg{width:20px;height:20px;flex-shrink:0;opacity:0.85;}
+  .nav-item:hover{
+    background:rgba(58,160,255,0.06);
+    color:var(--text-hi);
+  }
+  .nav-item.active{
+    background:linear-gradient(90deg, rgba(58,160,255,0.18), rgba(58,160,255,0.03));
+    border:1px solid var(--line-bright);
+    color:var(--text-hi);
+    box-shadow:inset 0 0 20px rgba(58,160,255,0.08);
+  }
+  .nav-item.active svg{opacity:1;color:var(--blue-glow);}
+
+  .sidebar-footer{
+    margin-top:auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .social-row{
+    display:flex;
+    gap:10px;
+  }
+  .social-row a{
+    width:34px;height:34px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-mid);
+    transition:.2s;
+  }
+  .social-row a:hover{border-color:var(--blue-glow);color:var(--blue-glow);}
+  .social-row svg{width:16px;height:16px;}
+  .follow-label{font-size:11px;letter-spacing:2px;color:var(--text-dim);}
+
+  /* ---------- MAIN ---------- */
+  .main{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+
+  .topbar{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:14px;
+    padding:22px 32px 0;
+  }
+  .pill{
+    padding:9px 18px;
+    border-radius:999px;
+    border:1px solid var(--line-bright);
+    background:rgba(15,27,52,0.7);
+    font-size:12px;
+    letter-spacing:1.5px;
+    font-weight:600;
+    color:var(--text-mid);
+  }
+  .icon-btn{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1px solid var(--line-bright);
+    background:rgba(15,27,52,0.7);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-mid);
+    cursor:pointer;
+  }
+  .icon-btn svg{width:17px;height:17px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    margin:20px 32px 0;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    min-height:460px;
+    display:flex;
+    align-items:center;
+    background:
+      radial-gradient(ellipse 700px 500px at 78% 40%, rgba(58,160,255,0.30), transparent 65%),
+      linear-gradient(120deg,#081231 0%, #0a1c3f 45%, #0c2454 100%);
+  }
+  .hero-bg-lines{
+    position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(58,160,255,0.05) 0px, rgba(58,160,255,0.05) 1px, transparent 1px, transparent 90px);
+    opacity:0.6;
+  }
+  .hero-figure{
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    width:52%;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .hero-figure svg{
+    height:105%;
+    filter:drop-shadow(0 0 40px rgba(58,160,255,0.45));
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    padding:56px 0 56px 48px;
+    max-width:560px;
+  }
+  .eyebrow{
+    font-family:'Orbitron',sans-serif;
+    font-size:12px;
+    letter-spacing:4px;
+    color:var(--blue-glow);
+    margin-bottom:14px;
+    font-weight:700;
+  }
+  .hero-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:52px;
+    font-weight:900;
+    line-height:1.05;
+    background:linear-gradient(180deg,#ffffff, #b9cbea);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 4px 30px rgba(0,0,0,0.4);
+    letter-spacing:1px;
+  }
+  .hero-tagline{
+    font-family:'Orbitron',sans-serif;
+    font-size:16px;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin:18px 0 14px;
+    letter-spacing:1px;
+  }
+  .hero-desc{
+    color:var(--text-mid);
+    font-size:16px;
+    line-height:1.6;
+    max-width:440px;
+    margin-bottom:28px;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 30px;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(58,160,255,0.18), rgba(15,27,52,0.9));
+    border:1px solid var(--blue-glow);
+    color:var(--text-hi);
+    font-weight:700;
+    letter-spacing:1.5px;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(58,160,255,0.15);
+    transition:.2s;
+  }
+  .btn-primary:hover{background:rgba(58,160,255,0.28);}
+  .btn-primary svg{width:16px;height:16px;}
+
+  .hero-tag{
+    position:absolute;
+    right:28px;
+    bottom:24px;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:rgba(6,12,28,0.75);
+    border:1px solid var(--line-bright);
+    border-radius:12px;
+    padding:10px 18px 10px 10px;
+    backdrop-filter:blur(6px);
+  }
+  .hero-tag .icon{
+    width:38px;height:38px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#2a4a8a,#0a1630);
+    border:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-tag .icon svg{width:20px;height:20px;color:var(--gold-bright);}
+  .hero-tag .name{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;}
+  .hero-tag .role{font-size:11px;color:var(--text-dim);letter-spacing:0.5px;}
+
+  /* ---------- CARDS ROW ---------- */
+  .cards-row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:22px;
+    margin:26px 32px 40px;
+  }
+  .card{
+    background:linear-gradient(160deg, var(--bg-panel-light), var(--bg-panel));
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+  }
+  .card-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+    font-family:'Orbitron',sans-serif;
+    font-size:13px;
+    letter-spacing:1.5px;
+    font-weight:700;
+    color:var(--text-hi);
+  }
+  .card-head .ic{
+    width:30px;height:30px;
+    border-radius:8px;
+    background:rgba(58,160,255,0.12);
+    border:1px solid var(--line-bright);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-head .ic svg{width:15px;height:15px;color:var(--blue-glow);}
+
+  /* schedule */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    padding-left:6px;
+  }
+  .t-item{
+    position:relative;
+    padding:0 0 22px 26px;
+    border-left:2px solid var(--line-bright);
+  }
+  .t-item:last-child{border-left:2px solid transparent;padding-bottom:0;}
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-7px;top:2px;
+    width:12px;height:12px;
+    border-radius:50%;
+    background:var(--blue-glow);
+    box-shadow:0 0 10px rgba(58,160,255,0.7);
+  }
+  .t-label{font-weight:700;font-size:14.5px;letter-spacing:0.5px;color:var(--text-hi);}
+  .t-date{font-size:13px;color:var(--text-dim);margin-top:2px;}
+
+  /* prize */
+  .prize-card{align-items:center;text-align:center;}
+  .prize-amount{
+    font-family:'Orbitron',sans-serif;
+    font-size:30px;
+    font-weight:800;
+    color:var(--gold-bright);
+    margin-bottom:6px;
+    letter-spacing:0.5px;
+  }
+  .prize-sub{
+    font-size:13px;
+    color:var(--text-mid);
+    letter-spacing:1px;
+    margin-bottom:24px;
+  }
+  .trophy-wrap{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-bottom:24px;
+  }
+  .trophy-wrap svg{width:130px;filter:drop-shadow(0 0 20px rgba(232,182,76,0.35));}
+
+  .btn-secondary{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    background:rgba(58,160,255,0.08);
+    border:1px solid var(--line-bright);
+    color:var(--text-hi);
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:1.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:auto;
+  }
+  .btn-secondary:hover{background:rgba(58,160,255,0.16);}
+  .btn-secondary svg{width:14px;height:14px;}
+
+  /* news */
+  .news-list{display:flex;flex-direction:column;gap:16px;margin-bottom:18px;}
+  .news-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .news-thumb{
+    width:52px;height:52px;
+    border-radius:10px;
+    flex-shrink:0;
+    background:linear-gradient(135deg,#1e5fb8,#0a1630);
+    border:1px solid var(--line-bright);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .news-thumb svg{width:22px;height:22px;color:var(--blue-glow);}
+  .news-title{font-size:14px;font-weight:600;line-height:1.35;color:var(--text-hi);}
+  .news-date{font-size:12px;color:var(--text-dim);margin-top:4px;}
+
+  /* footer */
+  .footer{
+    text-align:center;
+    padding:22px 0 30px;
+    font-family:'Orbitron',sans-serif;
+    font-size:13px;
+    letter-spacing:3px;
+    color:var(--blue-glow);
+  }
+  .footer .hashtag{
+    display:block;
+    margin-top:8px;
+    color:var(--gold-bright);
+    font-size:12px;
+    letter-spacing:2px;
+  }
+
+  .intro-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    cursor:pointer;
+    overflow:hidden;
+    transition:opacity .45s ease, visibility .45s ease;
+  }
+  .intro-overlay.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .intro-video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .intro-content{
+    position:absolute;
+    left:50%;
+    bottom:24px;
+    transform:translateX(-50%);
+    padding:12px 22px;
+    border-radius:999px;
+    background:rgba(0,0,0,0.45);
+    border:1px solid rgba(255,255,255,0.2);
+    color:#fff;
+    text-align:center;
+    font-weight:600;
+    letter-spacing:1.2px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  }
+  .intro-content span{
+    display:block;
+    font-size:13px;
+  }
+  .intro-content .small{
+    margin-top:4px;
+    font-size:11px;
+    opacity:0.8;
+    letter-spacing:1.8px;
+  }
+  .intro-enter-btn{
+    margin-top:12px;
+    padding:10px 18px;
+    border:1px solid rgba(255,255,255,0.24);
+    border-radius:999px;
+    background:rgba(255,255,255,0.12);
+    color:#fff;
+    font-weight:700;
+    letter-spacing:1.2px;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+  }
+  .intro-enter-btn:hover{background:rgba(255,255,255,0.22);}
+
+  @media (max-width:1080px){
+    .cards-row{grid-template-columns:1fr;}
+    .hero-figure{width:70%;opacity:0.5;}
+    .hero-title{font-size:38px;}
+  }
+  @media (max-width:800px){
+    .app{grid-template-columns:1fr;}
+    .sidebar{
+      flex-direction:row;
+      align-items:center;
+      overflow-x:auto;
+      padding:16px;
+    }
+    .brand{display:none;}
+    .nav{flex-direction:row;}
+    .sidebar-footer{display:none;}
+    .hero-figure{display:none;}
+    .hero-content{padding:36px 24px;}
+    .hero-title{font-size:32px;}
+  }
+</style>
+</head>
+<body>
+<div id="introOverlay" class="intro-overlay">
+  <video id="introVideo" class="intro-video" src="motion.mp4" autoplay muted playsinline loop></video>
+  <div class="intro-content">
+    <span>KAPOLDA CUP SULSEL</span>
+    <span class="small">TEKAN DI MANA SAJA UNTUK MASUK</span>
+    <button type="button" id="enterSiteBtn" class="intro-enter-btn">MASUK KE HALAMAN</button>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-badge">
+        <img src="LOGO%20POLDA%20CUP.png" alt="Logo Polda Cup" style="width:100%;height:100%;object-fit:contain;padding:8px;">
+      </div>
+      <div class="brand-title">SULAWESI SELATAN<br>KAPOLDA CUP<br>ROAD TO KAPOLRI CUP 2026</div>
+      <div class="brand-sub">DREAM TO BECOME</div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        HOME
+      </div>
+      <a class="nav-item" href="kapoldacusulsel.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 01-10 0V4z"/><path d="M7 6H4a3 3 0 003 3M17 6h3a3 3 0 01-3 3"/></svg>
+        KAPOLDA CUP SULSEL
+      </a>
+      <button type="button" class="nav-item" id="showIntroBtn" style="background:none;border:none;text-align:left;width:100%;font:inherit;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-3-6 3V3z"/></svg>
+        KEMBALI KE INTRO
+      </button>
+      <a class="nav-item" href="program-polisi.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 3v6c0 5-3.5 8.5-7 11-3.5-2.5-7-6-7-11V5l7-3z"/></svg>
+        PROGRAM POLISI
+      </a>
+      <a class="nav-item" href="games.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="4"/><circle cx="8" cy="12" r="1.3"/><circle cx="16" cy="12" r="1.3"/></svg>
+        GAMES
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="follow-label">FOLLOW US</div>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v10.5a3.5 3.5 0 11-3.5-3.5"/><path d="M14 3a5 5 0 005 5"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4h-2a4 4 0 00-4 4v2H7v3h2v7h3v-7h2.5L15 13h-3v-2a1 1 0 011-1h2V4z"/></svg></a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+
+    <div class="topbar">
+       <br><img src="FLYER(7).png" alt="Sponsor" style="width:50%;height:50%;object-fit:contain;"></br>
+      <div class="pill">ROAD TO KAPOLRI CUP 2026</div>
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+      </div>
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </div>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="hero-bg-lines"></div>
+
+      <div class="hero-content">
+        <div class="eyebrow">ROAD TO KAPOLRI CUP 2026</div>
+        <h1 class="hero-title">KAPOLDA CUP<br>SULSEL</h1>
+        <div class="hero-tagline">LAND OF DAWN — BATTLE FOR GLORY</div>
+        <p class="hero-desc">Bertarunglah di Land of Dawn dan raih kejayaan untuk menjadi yang terbaik di Sulawesi Selatan!</p>
+        <button class="btn-primary">
+          LIHAT DETAIL
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+      <!-- hero illustration -->
+      <div class="hero-figure">
+        <img src="gatotkaca.png" alt="Gatotkaca" style="width:100%;height:100%;object-fit:contain;">
+
+          <!-- helmet -->
+          <path d="M158 180 Q160 120 200 110 Q240 120 242 180 Q200 160 158 180Z" fill="url(#armor)"/>
+          <path d="M195 108 L200 60 L206 108 Z" fill="#ffd989"/>
+          <!-- arms -->
+          <rect x="90" y="330" width="45" height="110" rx="18" fill="url(#armor)"/>
+          <rect x="265" y="330" width="45" height="110" rx="18" fill="url(#armor)"/>
+          <circle cx="112" cy="450" r="26" fill="#3aa0ff" opacity="0.85"/>
+          <circle cx="288" cy="450" r="26" fill="#3aa0ff" opacity="0.85"/>
+          <!-- lightning accents -->
+          <path d="M90 380 L60 420 L85 420 L55 470" stroke="#7fd0ff" stroke-width="4" fill="none" opacity="0.8"/>
+          <path d="M310 380 L340 420 L315 420 L345 470" stroke="#7fd0ff" stroke-width="4" fill="none" opacity="0.8"/>
+        </svg>
+      </div>
+
+      <div class="hero-tag">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.4L20 8l-4.2 3.8L17 18l-5-3.2L7 18l1.2-6.2L4 8l5.6-.6L12 2z"/></svg>
+        </div>
+        <div>
+          <div class="name">GATOT KACA</div>
+          <div class="role">THE MIGHTY GUARDIAN</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CARDS ================= -->
+    <section class="cards-row">
+
+      <!-- JADWAL -->
+      <div class="card">
+        <div class="card-head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          JADWAL TURNAMEN
+        </div>
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-label">TECHNICAL MEETING</div>
+            <div class="t-date">09 Juli 2026</div>
+          </div>
+          <div class="t-item">
+            <div class="t-label">KUALIFIKASI</div>
+            <div class="t-date">10 – 11 Juli 2026</div>
+          </div>
+          <div class="t-item">
+            <div class="t-label">PLAYOFF</div>
+            <div class="t-date">2 – 3 Juli 2026</div>
+          </div>
+          <div class="t-item">
+            <div class="t-label">GRAND FINAL</div>
+            <div class="t-date">12 Juli 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HADIAH -->
+      <div class="card prize-card">
+        <div class="card-head" style="align-self:flex-start;">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-3V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2H4a1 1 0 00-1 1v2a4 4 0 004 4M20 7a1 1 0 011 1v2a4 4 0 01-4 4"/><path d="M7 13a5 5 0 0010 0V7H7v6z"/><path d="M9 21h6M12 17v4"/></svg></div>
+          TOTAL HADIAH
+        </div>
+        <div class="prize-amount">RP 30.000.000</div>
+        <div class="prize-sub">+ TROPHY</div>
+        <div class="trophy-wrap">
+          <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gold2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffe9ad"/>
+                <stop offset="100%" stop-color="#c9962f"/>
+              </linearGradient>
+            </defs>
+            <polygon points="60,10 70,0 80,10 90,30 50,30" fill="url(#gold2)"/>
+            <path d="M40 30 Q30 60 55 75 L85 75 Q110 60 100 30 Z" fill="url(#gold2)"/>
+            <rect x="60" y="75" width="20" height="30" fill="url(#gold2)"/>
+            <polygon points="45,105 95,105 105,130 35,130" fill="url(#gold2)"/>
+            <rect x="40" y="130" width="60" height="12" rx="3" fill="url(#gold2)"/>
+            <circle cx="20" cy="45" r="7" fill="#7fd0ff" opacity="0.85"/>
+            <circle cx="118" cy="55" r="9" fill="#7fd0ff" opacity="0.85"/>
+            <circle cx="30" cy="90" r="5" fill="#7fd0ff" opacity="0.7"/>
+          </svg>
+        </div>
+        <button class="btn-secondary" href="kapoldacusulsel.html">
+          LIHAT HADIAH
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+      <!-- NEWS -->
+      <div class="card">
+        <div class="card-head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-7-7 18-2-8-8-3z"/></svg></div>
+          NEWS &amp; UPDATE
+        </div>
+        <div class="news-list">
+          <div class="news-item">
+            <div class="news-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.4L20 8l-4.2 3.8L17 18l-5-3.2L7 18l1.2-6.2L4 8l5.6-.6L12 2z"/></svg></div>
+            <div>
+              <div class="news-title">Pendaftaran Kapolda Cup Sulsel sudah dibuka!</div>
+              <div class="news-date">10 Juni 2026</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.4L20 8l-4.2 3.8L17 18l-5-3.2L7 18l1.2-6.2L4 8l5.6-.6L12 2z"/></svg></div>
+            <div>
+              <div class="news-title">Persiapkan tim terbaikmu dan raih kemenangan!</div>
+              <div class="news-date">8 Juni 2026</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.4L20 8l-4.2 3.8L17 18l-5-3.2L7 18l1.2-6.2L4 8l5.6-.6L12 2z"/></svg></div>
+            <div>
+              <div class="news-title">Road to Kapolri Cup 2026 siap dimulai!</div>
+              <div class="news-date">5 Juni 2026</div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-secondary">
+          LIHAT SEMUA
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <br><img src="POWERED BY.png" alt="Sponsor" style="width:50%;height:50%;object-fit:contain;"></br>
+      <!--Powered By :
+      <span class="hashtag">#DREAMTOBECOME</span>-->
+    </footer>
+
+  </div>
+</div>
+<script>
+  const introOverlay = document.getElementById('introOverlay');
+  const introVideo = document.getElementById('introVideo');
+  const showIntroBtn = document.getElementById('showIntroBtn');
+  const enterSiteBtn = document.getElementById('enterSiteBtn');
+  const enterSite = () => {
+    if (!introOverlay || introOverlay.classList.contains('hidden')) return;
+    // mark that the intro has been seen during this session
+    try { sessionStorage.setItem('introSeen', 'true'); } catch (e) {}
+    introOverlay.classList.add('hidden');
+    if (introVideo) {
+      introVideo.pause();
+      // stop looping once user entered
+      introVideo.loop = false;
+    }
+  };
+
+  // startIntro accepts a force flag to show the intro even if already seen
+  const startIntro = (force = false) => {
+    if (!introOverlay || !introVideo) return;
+    // if intro was already seen in this session and not forced, keep it hidden
+    const seen = (() => { try { return sessionStorage.getItem('introSeen') === 'true'; } catch (e) { return false; } })();
+    if (seen && !force) {
+      introOverlay.classList.add('hidden');
+      introVideo.pause();
+      return;
+    }
+    introOverlay.classList.remove('hidden');
+    introVideo.currentTime = 0;
+    introVideo.play().catch(() => {});
+  };
+
+  // clicking the "KEMBALI KE INTRO" button should force-show the intro
+  showIntroBtn?.addEventListener('click', () => startIntro(true));
+  enterSiteBtn?.addEventListener('click', enterSite);
+  introOverlay?.addEventListener('click', enterSite);
+  introOverlay?.addEventListener('touchstart', enterSite, { passive: true });
+  // on page load, only start the intro if it hasn't been seen in this session
+  window.addEventListener('load', () => startIntro(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+      enterSite();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program Polisi — Kapolda Cup Sulsel</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050914;
+    --panel:#0b1224;
+    --panel-light:#0f1b34;
+    --border:#1c2c4d;
+    --text:#f2f6ff;
+    --muted:#9fb3d9;
+    --blue:#3aa0ff;
+    --blue-soft:rgba(58,160,255,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{min-height:100vh;background:linear-gradient(180deg,#050914,#080f1f);color:var(--text);font-family:'Rajdhani',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  .page{max-width:1100px;margin:0 auto;padding:36px 24px;}
+  .back{display:inline-flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;margin-bottom:24px;}
+  .back:hover{color:var(--blue);}
+  .hero{background:linear-gradient(180deg,rgba(58,160,255,0.08),rgba(7,15,34,0.95));border:1px solid var(--border);border-radius:24px;padding:36px;display:grid;grid-template-columns:1fr 360px;gap:24px;}
+  .hero h1{font-family:'Orbitron',sans-serif;font-size:44px;letter-spacing:1px;margin-bottom:12px;}
+  .hero p{color:var(--muted);line-height:1.8;font-size:16px;}
+  .hero-tag{margin-top:20px;display:inline-flex;gap:10px;align-items:center;padding:14px 20px;border-radius:999px;border:1px solid rgba(58,160,255,0.18);background:rgba(58,160,255,0.08);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px;}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:24px;}
+  .card h2{font-family:'Orbitron',sans-serif;font-size:20px;margin-bottom:14px;}
+  .card p{color:var(--muted);line-height:1.75;font-size:15px;}
+  .card ul{margin-top:16px;list-style:none;display:grid;gap:10px;padding-left:0;}
+  .card li{position:relative;padding-left:24px;color:var(--text);line-height:1.75;}
+  .card li::before{content:'•';position:absolute;left:0;top:0;color:var(--blue);font-size:20px;line-height:1;}
+  .button-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;}
+  .button{padding:14px 22px;border-radius:12px;font-weight:700;letter-spacing:0.8px;border:1px solid transparent;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:10px;}
+  .button-primary{background:linear-gradient(180deg,rgba(58,160,255,0.24),rgba(15,27,52,0.95));border-color:rgba(58,160,255,0.35);color:var(--text);}
+  .button-secondary{background:rgba(255,255,255,0.05);color:var(--muted);border-color:var(--border);}
+  .button-primary:hover{background:rgba(58,160,255,0.32);}
+  .button-secondary:hover{background:rgba(255,255,255,0.1);}
+  .aside{display:grid;gap:20px;}
+  .aside .small-card{background:rgba(255,255,255,0.03);border:1px solid rgba(58,160,255,0.15);border-radius:18px;padding:20px;}
+  .aside .small-card h3{font-family:'Orbitron',sans-serif;font-size:16px;margin-bottom:12px;}
+  .aside .small-card p{color:var(--muted);line-height:1.7;font-size:14px;}
+  @media (max-width:900px){.hero{grid-template-columns:1fr;}.grid{grid-template-columns:1fr;}}  
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="index.html">← Kembali ke Beranda</a>
+  <section class="hero">
+    <div>
+      <div class="hero-tag">Program Polisi</div>
+      <h1>Program Khusus untuk Personel & Masyarakat</h1>
+      <p>Halaman ini menampilkan informasi lengkap tentang program kepolisian, agenda kegiatan, pendaftaran, dan layanan khusus Kapolda Cup Sulsel. Temukan cara ikut serta, syarat, serta manfaat bagi peserta dan masyarakat umum.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="#agenda">Lihat Agenda</a>
+        <a class="button button-secondary" href="#layanan">Layanan Polisi</a>
+      </div>
+    </div>
+    <div class="aside">
+      <div class="small-card">
+        <h3>Tujuan Program</h3>
+        <p>Memperkuat sinergi antara aparat kepolisian dan masyarakat melalui acara edukasi, pelayanan, dan kompetisi yang transparan serta aman.</p>
+      </div>
+      <div class="small-card">
+        <h3>Sasaran Utama</h3>
+        <p>Personel polisi, team supporter, pelajar, dan warga yang ingin berpartisipasi dalam kegiatan sosial dan lomba Kapolda Cup Sulsel.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card" id="agenda">
+      <h2>Agenda Program</h2>
+      <p>Program Polisi hadir dengan rangkaian acara yang terjadwal untuk memudahkan partisipasi dan meningkatkan keterlibatan semua pihak.</p>
+      <ul>
+        <li>Pembukaan dan sambutan Kapolda</li>
+        <li>Pelatihan keamanan siber dan etika digital</li>
+        <li>Program pembinaan masyarakat</li>
+        <li>Simulasi tanggap darurat dan pengamanan acara</li>
+      </ul>
+    </article>
+
+    <article class="card" id="layanan">
+      <h2>Layanan Utama</h2>
+      <p>Dalam program ini, Polisi menyediakan beberapa layanan khusus bagi peserta dan masyarakat dalam rangka memberikan dukungan terbaik selama Kapolda Cup berlangsung.</p>
+      <ul>
+        <li>Komunikasi langsung dengan petugas keamanan</li>
+        <li>Informasi pelaporan dan keamanan acara</li>
+        <li>Pemberdayaan dan edukasi masyarakat</li>
+        <li>Formulir pendaftaran program dan konsultasi</li>
+      </ul>
+    </article>
+  </div>
+
+  <section class="card" style="margin-top:24px;">
+    <h2>Bagaimana Cara Bergabung?</h2>
+    <p>Jika Anda ingin ikut serta dalam Program Polisi, cukup kunjungi meja pendaftaran saat acara berlangsung atau hubungi kontak resmi Kapolda Cup Sulsel yang tersedia di halaman utama.</p>
+  </section>
+</div>
+</body>
+</html>
