@@ -5,9 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kapolda Cup Sulsel</title>
   <style>
+    /* SPLASH SCREEN STYLES */
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: splashFadeOut 1s ease-in-out 2.5s forwards;
+    }
+
+    .splash-screen.hidden {
+      display: none;
+    }
+
+    .splash-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: splashZoom 2s ease-out forwards;
+    }
+
+    .splash-content img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .splash-screen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      animation: fadeInOverlay 0.5s ease-in-out 2s forwards;
+      opacity: 0;
+    }
+
+    @keyframes splashZoom {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInOverlay {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes splashFadeOut {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
     .topbar{
       background:linear-gradient(90deg, rgba(58, 160, 255, 0), rgba(15, 27, 52, 0));
-      border-bottom:1px solid var(--line);
+      border-bottom:20px solid var(--line);
       padding:12px 20px;
       text-align:center;
     }
@@ -28,28 +104,54 @@
 
     *{box-sizing:border-box;margin:0;padding:0;}
 
+    html, body {
+      min-height: 100vh;
+      width: 100%;
+    }
+
     body{
-      background:
-      linear-gradient(100deg, rgba(60, 7, 7, 0.401), rgba(0, 0, 0, 0.423)),
-      url('bgbiruu.png') center/cover no-repeat;
-    color:var(--text-hi);
-    font-family:'Rajdhani',sans-serif;
-    min-height:100vh;
+      background-color: var(--bg-deep);
+      background-image:
+        linear-gradient(100deg, rgba(60, 7, 7, 0), rgba(0, 0, 0, 0.65)),
+        url('KAPOLDA CUP 2026-1.png');
+      background-size: cover, cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color:var(--text-hi);
+      font-family:'Rajdhani',sans-serif;
+      animation: contentFadeIn 0.5s ease-out 1s both;
+    }
+
+    @keyframes contentFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .container{
+      max-height:900vh;
       max-width:1200px;
-      margin:0 auto;
-      padding:32px 20px 48px;
+      margin-top:100px;
+      margin:0px auto;
+      padding:50px 0px 48px;
     }
 
     .hero{
-      background:linear-gradient(120deg, rgba(58,160,255,0.16), rgba(15,27,52,0.95));
+      background-image: linear-gradient(120deg, rgba(0, 132, 255, 0), rgba(255, 10, 10, 0)), url('bgbiruu.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       border:1px solid var(--line);
       border-radius:24px;
       padding:32px;
       box-shadow:0 12px 40px rgba(0,0,0,0.25);
-      margin-bottom:24px;
+      margin-bottom:40px;
     }
 
     .hero h1{
@@ -70,7 +172,7 @@
       margin-top:20px;
       padding:12px 18px;
       border-radius:10px;
-      background:rgba(58,160,255,0.12);
+      background:rgb(255, 0, 0);
       border:1px solid var(--line-bright);
       color:var(--text-hi);
       text-decoration:none;
@@ -118,20 +220,23 @@
     }
   </style>
 </head>
-<div class="topbar">
-    <br img src="KAPOLDA CUP 2026 (2).png" alt="Logo" style="width:20%;height:20%;object-fit:contain;"></br>
-    <br><img src="FLYER(7).png" alt="Sponsor" style="width:20%;height:20%;object-fit:contain;"></br>
-</div>
+<!--<div class="topbar">
+    <br><img src="FLYER(7).png" alt="Sponsor" style="width:40%;height:40%;object-fit:contain;"></br>
+</div>-->
 <body>
+  <!-- SPLASH SCREEN -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-content">
+      <img src="KAPOLDA CUP 2026-1.png" alt="Kapolda Cup 2026 Splash">
+    </div>
+  </div>
+
   <div class="container">
     <section class="hero">
       <h1>Kapolda Cup Sulsel</h1>
-      <p>Turnamen Esports Mobile Legends Bangun Prestasi, Sportivitas, dan Talenta Sulawesi Selatan
+      <p>Dalam rangka memperingati Hari Ulang Tahun (HUT) Bhayangkara ke-80, Kepolisian Republik Indonesia menyelenggarakan Turnamen E-Sport Mobile Legends: Bang Bang Road to Kapolri Cup 2026. Kompetisi ini menjadi wadah bagi para atlet e-sport dari seluruh Indonesia untuk menunjukkan kemampuan terbaiknya melalui sistem kompetisi yang berjenjang, dimulai dari tingkat Polres, Polda, hingga Mabes Polri.
 
-Dalam rangka memeriahkan semangat pembinaan generasi muda di era digital, Kapolda Cup Sulawesi Selatan 2026 Road to Kapolri Cup hadir sebagai ajang kompetisi Mobile Legends: Bang Bang yang mempertemukan tim-tim terbaik dari berbagai kabupaten dan kota di Sulawesi Selatan. Turnamen ini menjadi wadah bagi para atlet esports untuk menunjukkan kemampuan, sportivitas, serta semangat kompetitif dalam memperebutkan tiket menuju Kapolri Cup.
-
-Mengusung tema "Road to Kapolri Cup", kompetisi ini tidak hanya berfokus pada persaingan di dalam Land of Dawn, tetapi juga menjadi sarana untuk membangun karakter generasi muda yang disiplin, kreatif, inovatif, dan mampu memanfaatkan teknologi digital secara positif. Esports kini telah berkembang menjadi salah satu cabang olahraga modern yang membutuhkan strategi, komunikasi, kerja sama tim, serta pengambilan keputusan yang cepat.
-
+Turnamen ini tidak hanya bertujuan mencari tim terbaik, tetapi juga menjadi sarana untuk mempererat hubungan antara Polri dengan masyarakat, khususnya generasi muda yang memiliki minat besar di bidang e-sport. Dengan konsep kompetisi nasional, setiap tim memiliki kesempatan yang sama untuk melaju hingga babak final dan memperebutkan gelar juara nasional.</p>
       <a class="btn-back" href="index.html">← Kembali ke Beranda</a>
     </section>
 
@@ -139,23 +244,53 @@ Mengusung tema "Road to Kapolri Cup", kompetisi ini tidak hanya berfokus pada pe
       <div class="card">
         <h2>Tentang Kegiatan</h2>
         <p>Kapolda Cup Sulsel 2026 diharapkan menjadi momentum lahirnya atlet-atlet esports berbakat yang mampu membawa nama Sulawesi Selatan ke tingkat nasional. Melalui proses seleksi yang kompetitif, para peserta terbaik akan memiliki kesempatan untuk melaju ke Kapolri Cup, membawa semangat juang serta kebanggaan daerah di panggung yang lebih tinggi.
-
 Selain pertandingan yang kompetitif, turnamen ini juga menjadi media untuk mempererat hubungan antara Polri dan masyarakat, khususnya kalangan generasi muda. Melalui pendekatan yang lebih dekat dengan dunia digital dan esports, diharapkan tercipta kolaborasi yang positif dalam menciptakan lingkungan yang aman, sehat, dan bebas dari penyalahgunaan teknologi.
-
-Setiap pertandingan akan menguji kemampuan mekanik pemain, strategi drafting hero, komunikasi tim, hingga mental bertanding di bawah tekanan. Dengan sistem kompetisi yang profesional serta menjunjung tinggi prinsip fair play, seluruh peserta diharapkan mampu memberikan performa terbaiknya dan menjadikan turnamen ini sebagai pengalaman berharga dalam perjalanan karier esports mereka.
-
-Kapolda Cup Sulsel 2026 Road to Kapolri Cup bukan sekadar sebuah kompetisi, melainkan sebuah langkah nyata dalam mendukung perkembangan industri esports Indonesia sekaligus mencetak atlet-atlet berprestasi yang siap bersaing di tingkat nasional.
+Setiap pertandingan akan menguji kemampuan mekanik pemain, strategi drafting hero, komunikasi tim, hingga mental bertanding di bawah tekanan. Dengan sistem kompetisi yang profesional serta menjunjung tinggi prinsip fair play, seluruh peserta diharapkan mampu memberikan performa terbaiknya dan menjadikan turnamen ini sebagai pengalaman berharga dalam perjalanan karier esports mereka.</p>
       </div>
 
       <div class="card">
         <h2>Nilai Utama</h2>
         <ul>
-          <li><span class="highlight">Sportivitas</span> dalam setiap pertandingan</li>
-          <li><span class="highlight">Disiplin</span> dan tanggung jawab</li>
-          <li><span class="highlight">Prestasi</span> yang membanggakan daerah</li>
+          <p><span class="highlight">Sportivitas</span> dalam setiap pertandingan</p>
+          <p><span class="highlight">Disiplin</span> dan tanggung jawab</p>
+          <p><span class="highlight">Prestasi</span> yang membanggakan daerah</p>
         </ul>
       </div>
     </div>
   </div>
+
+  <script>
+    // Handle splash screen transition
+    window.addEventListener('load', function() {
+      const splashScreen = document.getElementById('splashScreen');
+      
+      // Automatically hide splash screen after 3.5 seconds
+      setTimeout(function() {
+        if (splashScreen) {
+          splashScreen.classList.add('hidden');
+        }
+      }, 350); // 3.5 seconds
+    });
+
+    // Optional: Allow users to click to skip splash screen
+    document.addEventListener('click', function skipSplash() {
+      const splashScreen = document.getElementById('splashScreen');
+      if (splashScreen && !splashScreen.classList.contains('hidden')) {
+        splashScreen.classList.add('hidden');
+        document.removeEventListener('click', skipSplash);
+      }
+    });
+
+    // Optional: Allow pressing spacebar or enter to skip
+    document.addEventListener('keydown', function skipWithKey(event) {
+      if (event.code === 'Space' || event.code === 'Enter') {
+        const splashScreen = document.getElementById('splashScreen');
+        if (splashScreen && !splashScreen.classList.contains('hidden')) {
+          splashScreen.classList.add('hidden');
+          document.removeEventListener('keydown', skipWithKey);
+        }
+      }
+    });
+  </script>
 </body>
 </html>

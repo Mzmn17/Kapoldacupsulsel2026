@@ -43,17 +43,55 @@
   .aside .small-card{background:rgba(255,255,255,0.03);border:1px solid rgba(58,160,255,0.15);border-radius:18px;padding:20px;}
   .aside .small-card h3{font-family:'Orbitron',sans-serif;font-size:16px;margin-bottom:12px;}
   .aside .small-card p{color:var(--muted);line-height:1.7;font-size:14px;}
-  @media (max-width:900px){.hero{grid-template-columns:1fr;}.grid{grid-template-columns:1fr;}}  
+  
+  /* CAROUSEL STYLES */
+  .carousel-section{margin-top:36px;background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:28px;overflow:hidden;}
+  .carousel-title{font-family:'Orbitron',sans-serif;font-size:24px;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+  .carousel-title svg{width:24px;height:24px;color:var(--blue);}
+  
+  .carousel-container{position:relative;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(58,160,255,0.15);}
+  .carousel-wrapper{display:flex;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);}
+  .carousel-slide{min-width:100%;height:400px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(58,160,255,0.1),rgba(7,15,34,0.8));}
+  .carousel-slide img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;cursor:pointer;transition:transform 0.3s ease;}
+  .carousel-slide img:hover{transform:scale(1.02);}
+  
+  .carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 20px;pointer-events:none;z-index:10;}
+  .carousel-btn{pointer-events:auto;width:44px;height:44px;background:rgba(58,160,255,0.8);border:none;border-radius:50%;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;}
+  .carousel-btn:hover{background:rgba(58,160,255,1);transform:scale(1.1);}
+  
+  .carousel-dots{display:flex;justify-content:center;gap:10px;margin-top:16px;} 
+  .dot{width:10px;height:10px;border-radius:50%;background:rgba(58,160,255,0.3);border:1px solid rgba(58,160,255,0.5);cursor:pointer;transition:all 0.3s ease;}
+  .dot.active{background:var(--blue);width:28px;border-radius:5px;}
+
+  .splash-screen{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:10000;opacity:1;visibility:visible;transition:opacity .45s ease, visibility .45s ease;}
+  .splash-screen.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+  .splash-screen img{width:100%;height:100%;object-fit:cover;display:block;}
+  .splash-screen::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.25);}
+
+  /* MODAL FULLSCREEN */
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;animation:fadeIn 0.3s ease;}
+  .modal.active{display:flex;}
+  .modal-content{position:relative;max-width:90vh;max-height:90vh;width:auto;height:auto;}
+  .modal-content img{max-width:100%;max-height:90vh;width:auto;height:auto;object-fit:contain;}
+  .modal-close{position:absolute;top:20px;right:20px;width:44px;height:44px;background:rgba(255,255,255,0.1);border:2px solid white;border-radius:50%;color:white;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;z-index:10000;}
+  .modal-close:hover{background:rgba(255,255,255,0.2);}
+  
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  
+  @media (max-width:900px){.hero{grid-template-columns:1fr;}.grid{grid-template-columns:1fr;}.carousel-slide{height:300px;}.carousel-btn{width:36px;height:36px;font-size:18px;}}  
 </style>
 </head>
 <body>
+  <div class="splash-screen" id="splashScreen">
+    <img src="Policezone.png" alt="Policezone Splash">
+  </div>
 <div class="page">
   <a class="back" href="index.html">← Kembali ke Beranda</a>
   <section class="hero">
     <div>
       <div class="hero-tag">Program Polisi</div>
       <h1>Program Khusus untuk Personel & Masyarakat</h1>
-      <p>Halaman ini menampilkan informasi lengkap tentang program kepolisian, agenda kegiatan, pendaftaran, dan layanan khusus Kapolda Cup Sulsel. Temukan cara ikut serta, syarat, serta manfaat bagi peserta dan masyarakat umum.</p>
+      <p>Kepolisian Daerah Sulawesi Selatan (disingkat Polda Sulsel) adalah pelaksana tugas Kepolisian RI di wilayah Provinsi Sulawesi Selatan. Polda ini tergolong polda tipe A, karena ini dipimpin oleh seorang kepala kepolisian daerah yang berpangkat bintang dua (Inspektur Jenderal Polisi). Dahulu Polda ini bernama Komando Daerah Kepolisian (Komdak atau Kodak) XVIII/Sulselra, lalu menjadi Polda Sulselra hingga 1996 setelah itu menjadi Polda Sulselbar yang membawahi wilayah Sulawesi Barat karena di provinsi itu belum terbentuk secara otonomi kepolisian daerah. Sampai bulan Juni 2016, Kapolri Jenderal Pol. Badrodin Haiti resmi mengangkat Kapolda Sulawesi Barat yang menandakan resminya berdiri Polda Sulbar dan terpisah dari Polda Sulsel.</p>
       <div class="button-row">
         <a class="button button-primary" href="#agenda">Lihat Agenda</a>
         <a class="button button-secondary" href="#layanan">Layanan Polisi</a>
@@ -62,43 +100,158 @@
     <div class="aside">
       <div class="small-card">
         <h3>Tujuan Program</h3>
-        <p>Memperkuat sinergi antara aparat kepolisian dan masyarakat melalui acara edukasi, pelayanan, dan kompetisi yang transparan serta aman.</p>
+        <p>Memelihara Keamanan dan Ketertiban: Melakukan berbagai tindakan pencegahan dan penanganan untuk memastikan keselamatan jiwa, harta benda, serta hak asasi manusia dari gangguan.Menegakkan Hukum: Memproses segala bentuk tindak pidana atau pelanggaran hukum secara adil, transparan, dan profesional guna menciptakan kepastian hukum di tengah masyarakat.Melindungi dan Mengayomi Masyarakat: Memberikan rasa aman, menjadi pelayan publik yang humanis, serta menjadi pilar strategis dalam mendukung berbagai agenda pembangunan nasional.</p>
       </div>
       <div class="small-card">
         <h3>Sasaran Utama</h3>
-        <p>Personel polisi, team supporter, pelajar, dan warga yang ingin berpartisipasi dalam kegiatan sosial dan lomba Kapolda Cup Sulsel.</p>
+        <p>memeliharaan Kamtibmas: Menciptakan situasi yang aman, kondusif, dan tertib di seluruh lingkungan masyarakat.Penegakan Hukum: Menindak segala bentuk pelanggaran dan kejahatan secara adil, transparan, dan profesional Hukum Positif Indonesia.Pelayanan Publik: Menghadirkan pelayanan yang cepat, terintegrasi, dan berorientasi pada kepercayaan masyarakat</p>
       </div>
     </div>
   </section>
 
-  <div class="grid">
-    <article class="card" id="agenda">
-      <h2>Agenda Program</h2>
-      <p>Program Polisi hadir dengan rangkaian acara yang terjadwal untuk memudahkan partisipasi dan meningkatkan keterlibatan semua pihak.</p>
-      <ul>
-        <li>Pembukaan dan sambutan Kapolda</li>
-        <li>Pelatihan keamanan siber dan etika digital</li>
-        <li>Program pembinaan masyarakat</li>
-        <li>Simulasi tanggap darurat dan pengamanan acara</li>
-      </ul>
-    </article>
-
-    <article class="card" id="layanan">
-      <h2>Layanan Utama</h2>
-      <p>Dalam program ini, Polisi menyediakan beberapa layanan khusus bagi peserta dan masyarakat dalam rangka memberikan dukungan terbaik selama Kapolda Cup berlangsung.</p>
-      <ul>
-        <li>Komunikasi langsung dengan petugas keamanan</li>
-        <li>Informasi pelaporan dan keamanan acara</li>
-        <li>Pemberdayaan dan edukasi masyarakat</li>
-        <li>Formulir pendaftaran program dan konsultasi</li>
-      </ul>
-    </article>
-  </div>
+  <!-- CAROUSEL SECTION -->
+  <section class="carousel-section">
+    <h2 class="carousel-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </svg>
+      EDUKASI & SOSIALISASI
+    </h2>
+    
+    <div class="carousel-container">
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <div class="carousel-slide">
+          <img src="STOP HOAX.png" alt="Stop Hoax" onclick="openModal(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="WASPADA PENIPUAN.png" alt="Waspada Penipuan" onclick="openModal(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="WASPADA PENIPUAN ONLINE.png" alt="Waspada Penipuan Online" onclick="openModal(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="LAYANAN POLISI 110.png" alt="Layanan Polisi 110" onclick="openModal(this.src)">
+        </div>
+        <div class="carousel-slide">
+          <img src="KEAMANAN SIBER.png" alt="Keamanan Siber" onclick="openModal(this.src)">
+        </div>
+      </div>
+      
+      <div class="carousel-nav">
+        <button class="carousel-btn" onclick="prevSlide()">❮</button>
+        <button class="carousel-btn" onclick="nextSlide()">❯</button>
+      </div>
+    </div>
+    
+    <div class="carousel-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+      <span class="dot" onclick="goToSlide(4)"></span>
+    </div>
+  </section>
 
   <section class="card" style="margin-top:24px;">
     <h2>Bagaimana Cara Bergabung?</h2>
     <p>Jika Anda ingin ikut serta dalam Program Polisi, cukup kunjungi meja pendaftaran saat acara berlangsung atau hubungi kontak resmi Kapolda Cup Sulsel yang tersedia di halaman utama.</p>
   </section>
 </div>
+
+<!-- MODAL FULLSCREEN -->
+<div class="modal" id="imageModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img id="modalImage" src="" alt="Fullscreen View">
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const totalSlides = 5;
+  const wrapper = document.getElementById('carouselWrapper');
+  const dots = document.querySelectorAll('.dot');
+
+  function updateCarousel() {
+    const offset = currentSlide * -100;
+    wrapper.style.transform = `translateX(${offset}%)`;
+    
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+
+  function openModal(src) {
+    const modal = document.getElementById('imageModal');
+    const img = document.getElementById('modalImage');
+    img.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal when clicking outside the image
+  document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Splash screen hide behavior
+  window.addEventListener('load', function() {
+    const splashScreen = document.getElementById('splashScreen');
+    if (!splashScreen) return;
+    setTimeout(function() {
+      splashScreen.classList.add('hidden');
+    }, 2200);
+  });
+
+  document.addEventListener('click', function skipSplash() {
+    const splashScreen = document.getElementById('splashScreen');
+    if (splashScreen && !splashScreen.classList.contains('hidden')) {
+      splashScreen.classList.add('hidden');
+      document.removeEventListener('click', skipSplash);
+    }
+  });
+
+  document.addEventListener('keydown', function skipWithKey(event) {
+    if (event.code === 'Space' || event.code === 'Enter') {
+      const splashScreen = document.getElementById('splashScreen');
+      if (splashScreen && !splashScreen.classList.contains('hidden')) {
+        splashScreen.classList.add('hidden');
+        document.removeEventListener('keydown', skipWithKey);
+      }
+    }
+  });
+</script>
 </body>
 </html>

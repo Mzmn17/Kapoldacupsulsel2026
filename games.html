@@ -6,43 +6,321 @@
 <title>Games — Kapolda Cup Sulsel</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body{background:#050914;color:#f2f6ff;font-family:'Rajdhani',sans-serif;min-height:100vh;padding:28px}
-  .header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
-  .back{color:#9fb3d9;text-decoration:none;font-weight:700}
-  .card{background:#0b1224;border:1px solid #1c2c4d;padding:20px;border-radius:12px}
-  .games-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
-  .game{padding:14px;border-radius:10px;background:linear-gradient(180deg,#071028,#08122a);border:1px solid #15273f}
-  .btn-primary2{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:8px;background:#1e5fb8;color:#fff;text-decoration:none;font-weight:700;border:none;cursor:pointer;transition:background 0.3s}
+  :root {
+    --bg-deep: #050914;
+    --bg-panel: #0b1224;
+    --line: #1c2c4d;
+    --blue-glow: #3aa0ff;
+    --blue-mid: #1e5fb8;
+    --text-hi: #f2f6ff;
+    --text-mid: #9fb3d9;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    position: relative;
+    background: linear-gradient(100deg, rgba(60, 7, 7, 0), rgba(0, 0, 0, 0)),
+      url('LB1.png') center/cover no-repeat;
+    color: var(--text-hi);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+  }
+
+  main {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 100px;
+  }
+
+  .header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--text-hi);
+  }
+
+  .back {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    font-size: 14px;
+  }
+
+  .back:hover {
+    color: var(--blue-glow);
+    transform: translateX(-4px);
+  }
+
+  main {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    padding: 32px;
+    border-radius: 16px;
+    color: var(--text-hi);
+    box-shadow: 0 8px 32px rgba(58, 160, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: var(--blue-glow);
+    box-shadow: 0 8px 40px rgba(58, 160, 255, 0.2);
+    background: linear-gradient(135deg, rgba(58, 160, 255, 0.05), rgba(30, 95, 184, 0.03));
+  }
+
+  .card p {
+    color: var(--text-mid);
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .games-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .btn-primary2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--blue-mid), rgba(30, 95, 184, 0.9));
+    color: var(--text-hi);
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: 1px solid rgba(58, 160, 255, 0.45);
+    cursor: pointer;
+    transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, background .22s ease;
+    box-shadow: 0 6px 28px rgba(30,95,184,0.18);
+    position: relative;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .btn-primary2::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .btn-primary2:hover {
+    background: linear-gradient(135deg, rgba(58, 160, 255, 0.45), rgba(30, 95, 184, 1));
+    box-shadow: 0 10px 40px rgba(30,95,184,0.22);
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--blue-glow);
+  }
+
+  .btn-primary2:hover::before {
+    opacity: 1;
+  }
+
+  .btn-primary2:active {
+    transform: translateY(-1px) scale(.995);
+    box-shadow: 0 6px 18px rgba(30,95,184,0.18);
+  }
+
+  .btn-primary2 svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-primary2:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    body {
+      padding: 16px;
+    }
+
+    .header {
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+    }
+
+    .card {
+      padding: 20px;
+    }
+
+    .games-list {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .btn-primary2 {
+      padding: 16px 20px;
+      font-size: 14px;
+    }
+  }
+
+  /* Animasi untuk card pada load */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card {
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  .btn-primary2 {
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  .btn-primary2:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .btn-primary2:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  /* ripple effect element */
+  .btn-primary2 .ripple{
+    position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,0.25);pointer-events:none;animation:ripple 600ms ease-out;
+  }
+
+  @keyframes ripple{from{transform:scale(0);opacity:0.9}to{transform:scale(2.5);opacity:0}}
+  /* Powered BT fixed at bottom center */
+  .powered-bt{
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    max-width: 100%;
+    height: 100px;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0.95;
+  }
 </style>
 </head>
 <body>
 <header class="header">
-  <a class="back" href="index.html">← Kembali</a>
-  <h1>GAMES</h1>
+  <br><a class="back" href="index.html">← KEMBALI</a></br>
+  <p><h1>MINI GAMES</h1></p>
 </header>
 <main>
   <div class="card">
-    <p>Daftar permainan / mini-games untuk Kapolda Cup Sulsel.</p>
+    <p>Mainkan berbagai mini-games seru dan asik untuk Kapolda Cup Sulsel. Klik tombol di bawah untuk memulai petualangan Anda!</p>
     <div class="games-list">
-      <!--<div class="game"><strong>1.</strong> LENGKAPI HURUF</div>
-      <div class="game"><strong>2.</strong> TEBAK EMOJI</div>
-      <div class="game"><strong>3.</strong> PUZZLE</div>-->
-    <button class="btn-primary2" href="https://wordwall.net/resource/115981495">
-          LENGKAPI HURUF
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
-    </button>
-    <button class="btn-primary2" href="https://emoji-guessing-game-r8vp.bolt.host">
-          tebak emoji
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
-    </button>
+      <a class="btn-primary2" href="https://wordwall.net/resource/115981495" target="_blank">
+        LENGKAPI HURUF
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
 
-    <button class="btn-primary2" href="https://picture-puzzle-game-2jqk.bolt.host">
-          PUZZEL
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
-    </button>
-</div>
+      <a class="btn-primary2" href="https://emoji-guessing-game-r8vp.bolt.host" target="_blank">
+        TEBAK EMOJI
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
+
+      <a class="btn-primary2" href="https://picture-puzzle-game-2jqk.bolt.host" target="_blank">
+        PUZZLE
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
+
+      <a class="btn-primary2" href="https://wayground.com/join?gc=12229225" target="_blank">
+        QUIZIZ
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
+
+      <a class="btn-primary2" href="https://wayground.com/join?gc=42900073" target="_blank">
+        QUIZIZ  2
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
+
+      <a class="btn-primary2" href="https://wayground.com/join?gc=07349865" target="_blank">
+        QUIZIZ  3
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
     </div>
   </div>
 </main>
+  <img src="POWERED BY.png" alt="Powered by BT" class="powered-bt">
+
+  <script>
+    // Ripple effect and accessibility for game buttons
+    document.querySelectorAll('.btn-primary2').forEach(function(btn){
+      // Ensure keyboard focusable
+      if (!btn.hasAttribute('tabindex')) btn.setAttribute('tabindex','0');
+      if (!btn.hasAttribute('role')) btn.setAttribute('role','button');
+
+      btn.addEventListener('click', function(e){
+        // create ripple element at click position
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(function(){ ripple.remove(); }, 600);
+      });
+
+      btn.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  </script>
 </body>
-</html> 
+</html>
